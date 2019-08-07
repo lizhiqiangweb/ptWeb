@@ -45,6 +45,6 @@ body {
 
 .content {
   width: 1200px;
-  margin: 0 auto;
+  margin: 58px auto 0;
 }
 </style>

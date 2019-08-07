@@ -237,6 +237,9 @@ export default {
 
   .swiper {
     margin: -58px 0 0 0;
+    img {
+      display: block;
+    }
   }
 
 }
