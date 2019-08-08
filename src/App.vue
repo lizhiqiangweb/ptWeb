@@ -1,7 +1,9 @@
 <template>
 <div>
   <Header></Header>
-  <router-view />
+  <transition name="fade">
+    <router-view />
+  </transition>
 </div>
 </template>
 
@@ -46,5 +48,20 @@ body {
 .content {
   width: 1200px;
   margin: 58px auto 0;
+}
+
+.el-pager li {
+  background-color: #fff !important;
+}
+
+.el-pagination .el-pager .active {
+  background-color: #000 !important;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s ease-in;
+
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
 }
 </style>

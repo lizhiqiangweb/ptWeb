@@ -143,14 +143,21 @@
 
     <div class="content content5-main">
       <div class="content5-left">
-        <div class="left-item" v-for="(item, index) in content5ImgList" :key="index" :background="item.bgUrl">
-          <img :src="item.imgUrl" alt="">
-          <p>{{item.name}}</p>
+        <div class="left-item" v-for="(item, index) in content5ImgList" :key="index" :style="'background-image: url('+item.bgUrl+');'">
+          <div class="teamList">
+            <img :src="item.imgUrl" alt="">
+            <p>{{item.name}}</p>
+          </div>
         </div>
       </div>
 
-      <div class="content5-right">
-        <img src="@/assets/img/home/bg_img4.jpg" alt="">
+      <div class="content5-right" v-for="(item, index) in content5ImgList" :key="index" v-show="teamView == index" :style="'background-image: url('+item.mainBgUrl+');'">
+        <div class="team-view">
+          <img :src="item.imgUrl" alt="">
+          <h3>{{item.name}}</h3>
+          <p>擅长风格：{{item.style}}</p>
+          <p>{{item.motto}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -163,6 +170,7 @@ export default {
   data() {
     return {
       activeName: '1',
+      teamView: 0,
       content3ImgShow: 0,
       processList: [{
           name: '网上预约',
@@ -314,19 +322,23 @@ export default {
           require('@/assets/img/home/img15.jpg')
         ],
       }],
-      content5ImgList: [
-        {
+      content5ImgList: [{
           bgUrl: require('@/assets/img/home/bg_img1.jpg'),
+          mainBgUrl: require('@/assets/img/home/bg_img4.jpg'),
           imgUrl: require('@/assets/img/home/hj.jpg'),
-          name: '胡静'
+          name: '胡静',
+          style: '现代、简约',
+          motto: '贴近您的生活习惯，融合我无限的创意，给您一个温馨的家'
         },
         {
           bgUrl: require('@/assets/img/home/bg_img2.jpg'),
+          mainBgUrl: require('@/assets/img/home/bg_img4.jpg'),
           imgUrl: require('@/assets/img/home/zyt.jpg'),
           name: '周玉婷'
         },
         {
           bgUrl: require('@/assets/img/home/bg_img3.jpg'),
+          mainBgUrl: require('@/assets/img/home/bg_img4.jpg'),
           imgUrl: require('@/assets/img/home/yll.jpg'),
           name: '袁玲玲'
         }
@@ -664,31 +676,52 @@ export default {
 
     }
   }
+
   .content5 {
     .content5-main {
       display: flex;
+
       .content5-left {
         .left-item {
           width: 298px;
           height: 189px;
-          background: url(../assets/img/home/bg_img1.jpg);
           margin: 0 10px 16px 0;
-          img {
-            border-radius: 50%;
-            width: 105px;
-            height: 105px;
-            display: block;
-            margin: 0 auto 22px;
+
+          .teamList {
+            padding: 28px 0 0 0;
+            img {
+              border-radius: 50%;
+              width: 105px;
+              height: 105px;
+              display: block;
+              margin: 0 auto 22px;
+            }
+
+            p {
+              color: #fff;
+              text-align: center;
+            }
           }
-          p {
-            color: #fff;
-            text-align: center;
-          }
+
         }
       }
-      .content5-right {
-        img {
 
+      .content5-right {
+        width: 894px;
+        height: 600px;
+        .team-view {
+          img {
+            width: 270px;
+            height: 270px;
+            border-radius: 50%;
+            display: block;
+            margin: 106px auto 40px;
+          }
+          p, h3 {
+            color: #fff;
+            line-height: 2;
+            text-align: center;
+          }
         }
       }
     }

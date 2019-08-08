@@ -22,7 +22,7 @@
 
     <div class="navList">
       <ul>
-        <li v-for="(item, index) in navList" :key="index">
+        <li v-for="(item, index) in navList" :key="index" @click="cur=index" :class="cur == index ? 'active' : ''">
           <router-link :to="{ path : item.path}">{{item.name}}</router-link>
         </li>
       </ul>
@@ -44,6 +44,7 @@
 export default {
   data() {
     return {
+      cur: 0,
       show: false,
       navList: [{
           name: '首页',
@@ -150,7 +151,7 @@ export default {
   }
 
   .line {
-    border: 1px solid rgba(0, 0, 0, .9);
+    border: 1px solid rgba(0, 0, 0, .7);
     position: relative;
     top: -58px;
   }
@@ -162,7 +163,8 @@ export default {
 
     .slider {
       background: #fff;
-      width: 205px;
+      width: 200px;
+      margin: -59px 0 0 0;
 
       h3 {
         text-align: center;
@@ -216,11 +218,13 @@ export default {
     .navList {
       ul {
         display: flex;
+        margin: -58px 0 0 0;
 
         li {
-          height: 58px;
+          height: 54px;
           line-height: 58px;
           margin: 0 44px;
+          transition: all 0.4s ease-in;
 
           a {
             color: #fff;
@@ -237,10 +241,15 @@ export default {
 
   .swiper {
     margin: -58px 0 0 0;
+
     img {
       display: block;
     }
   }
 
+}
+
+.active {
+  border-bottom: 2px solid #fff;
 }
 </style>
