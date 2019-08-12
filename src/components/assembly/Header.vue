@@ -8,16 +8,18 @@
   <div class="line"></div>
   <div class="content top">
     <div class="slider">
-      <h3 v-on:click="showList()">所有空间分类</h3>
-      <ul v-show="show">
-        <li v-for="(item, index) in sliderList" :key="index">
-          <div class="tit">
-            <img :src="item.iconUrl" alt="">
-            <p>{{item.tit}}</p>
-          </div>
-          <span v-for="(item1, index1) in item.type" :key="index1">{{item1}}</span>
-        </li>
-      </ul>
+      <h3 v-on:click="show = !show">所有空间分类</h3>
+      <transition name="show">
+        <ul v-show="show">
+          <li v-for="(item, index) in sliderList" :key="index">
+            <div class="tit">
+              <img :src="item.iconUrl" alt="">
+              <p>{{item.tit}}</p>
+            </div>
+            <span v-for="(item1, index1) in item.type" :key="index1">{{item1}}</span>
+          </li>
+        </ul>
+      </transition>
     </div>
 
     <div class="navList">
@@ -29,7 +31,7 @@
     </div>
   </div>
 
-  <div class="swiper">
+  <div class="swiper" v-if="bannerShow">
     <el-carousel :interval="5000" arrow="always" :height="750+'px'">
       <el-carousel-item v-for="item in bannerList" :key="item">
         <img :src="item.imgUrl" alt="">
@@ -46,6 +48,7 @@ export default {
     return {
       cur: 0,
       show: false,
+      bannerShow: true,
       navList: [{
           name: '首页',
           path: '/'
@@ -111,7 +114,7 @@ export default {
           imgUrl: require('@/assets/img/home/banner1.jpg')
         },
         {
-          id: 1,
+          id: 2,
           imgUrl: require('@/assets/img/home/banner1.jpg')
         }
       ]
@@ -128,11 +131,34 @@ export default {
     showList: function () {
       this.show = true;
     }
+  },
+  watch: {
+    $route(to, from) {
+      if (this.$route.path === "/activity" || "/team" || "/aboutUs") {
+        this.bannerShow = false;
+      }
+      if (this.$route.path === "/" || this.$route.path === "/familyCase" || this.$route.path === "/strategy" || this.$route.path === "/share") {
+        this.bannerShow = true;
+      }
+    }
   }
+
 }
 </script>
 
 <style lang="scss">
+// transition
+.show-enter-active,
+.show-leave-active {
+  transition: opacity .3s ease-in;
+
+}
+
+.show-enter,
+.show-leave-active {
+  opacity: 0;
+}
+
 .Header {
   position: relative;
 

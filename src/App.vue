@@ -8,14 +8,18 @@
 </template>
 
 <script>
-import Header from '@/components/assembly/Header'
+import Header from "@/components/assembly/Header";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Header
-  }
-}
+  },
+  data() {
+    return {};
+  },
+
+};
 </script>
 
 <style>
@@ -33,7 +37,7 @@ a {
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -57,11 +61,17 @@ body {
 .el-pagination .el-pager .active {
   background-color: #000 !important;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s ease-in;
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-in;
 }
-.fade-enter, .fade-leave-active {
+
+.fade-enter,
+.fade-leave-active {
   opacity: 0;
+}
+.banner {
+  margin: -58px 0 0 0;
 }
 </style>

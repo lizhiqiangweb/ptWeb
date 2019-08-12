@@ -1,7 +1,10 @@
 <!--  -->
 <template>
 <div class="activity">
-  <div class="discount">
+  <dir class="banner">
+    <img src="@/assets/img/activity/banner.jpg" alt="">
+  </dir>
+  <div class="discount" style="margin: -4px 0 0 0">
     <div class="discount-item" v-for="(item, index) in discountList" :key="index">
       <h1>{{item.number}}<span>元</span></h1>
       <h3>{{item.tit}}</h3>

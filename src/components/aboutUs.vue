@@ -1,6 +1,9 @@
 <!--  -->
 <template>
 <div class="aboutUs">
+  <div class="banner">
+    <img src="@/assets/img/aboutUs/banner.jpg" alt="">
+  </div>
   <div class="content aboutDis">
     <div v-for="(item, index) in aboutUs" :key="index">
       <h2>{{item.tit}}</h2>

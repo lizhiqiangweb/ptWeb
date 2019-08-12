@@ -1,6 +1,9 @@
 <!--  -->
 <template>
 <div class="activity">
+  <div class="banner">
+    <img src="@/assets/img/home/banner3.jpg" alt="">
+  </div>
   <div class="content content1">
     <h3>你是否也遇到过这些烦恼？</h3>
     <p>Have you ever had these troubles?</p>

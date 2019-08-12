@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <div class="content content1-main">
+    <div class="content1-main">
       <div class="content-left">
         <h3>预约获取<span>0元设计</span></h3>
         <form action="">
@@ -143,11 +143,12 @@
 
     <div class="content content5-main">
       <div class="content5-left">
-        <div class="left-item" v-for="(item, index) in content5ImgList" :key="index" :style="'background-image: url('+item.bgUrl+');'">
+        <div class="left-item" v-for="(item, index) in content5ImgList" :key="index" :style="'background-image: url('+item.bgUrl+');'" @click="current=index">
           <div class="teamList">
             <img :src="item.imgUrl" alt="">
             <p>{{item.name}}</p>
           </div>
+          <div class="content5-icon" v-if="current==index"></div>
         </div>
       </div>
 
@@ -172,6 +173,7 @@ export default {
       activeName: '1',
       teamView: 0,
       content3ImgShow: 0,
+      current: 0,
       processList: [{
           name: '网上预约',
           type: '（免费）'
@@ -385,11 +387,20 @@ export default {
   .content1-main {
     background: #fff;
     display: flex;
-    height: 449px;
+    height: 445px;
+    margin: 48px 0 0 0;
+
+    .content-right {
+      img {
+        width: 675px;
+        height: 471px;
+      }
+
+    }
 
     .content-left {
       border-right: 1px solid #000;
-      width: 600px;
+      width: 606px;
 
       h3 {
         text-align: center;
@@ -438,43 +449,49 @@ export default {
     display: flex;
     background: url('../assets/img/home/bg_img.jpg') no-repeat;
     margin: 58px 0 0 0;
-    height: 300px;
+    height: 46vh;
     width: 100%;
     justify-content: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
 
     h3 {
       color: #fff;
       line-height: 300px;
-      margin: 0 168px 0 0;
+      margin: 0 6vw 0 0;
       font-size: 28px;
     }
 
     .process-Content {
       display: flex;
-      margin: 70px 0 0 0;
+      margin: 12vh 0 0 0;
 
       .content-item {
         display: flex;
 
         img {
-          width: 138px;
-          height: 28px;
-          margin: 64px 0 0 0;
+          width: 6vw;
+          height: 4vh;
+          margin: 8vh 0 0 0;
         }
 
         .content-tit {
-          width: 150px;
-          height: 100px;
+          width: 6vw;
+          height: 22vh;
           text-align: center;
           border: 1px solid #fff;
           margin: 0 28px 0 28px;
-          padding: 60px 0 0 0;
+          padding: 0 2vw;
 
           p {
             color: #fff;
             line-height: 1.6;
           }
 
+          p:first-child {
+            margin: 6.5vh 0 0 0;
+          }
         }
 
       }
@@ -686,9 +703,24 @@ export default {
           width: 298px;
           height: 189px;
           margin: 0 10px 16px 0;
+          position: relative;
+
+          .content5-icon {
+            background: #333;
+            width: 36px;
+            height: 36px;
+            position: absolute;
+            top: 70px;
+            right: -17px;
+            transform: rotate(45deg);
+            z-index: -1;
+          }
 
           .teamList {
             padding: 28px 0 0 0;
+            position: relative;
+            z-index: 100;
+
             img {
               border-radius: 50%;
               width: 105px;
@@ -709,6 +741,9 @@ export default {
       .content5-right {
         width: 894px;
         height: 600px;
+        position: relative;
+        z-index: -2;
+
         .team-view {
           img {
             width: 270px;
@@ -717,7 +752,9 @@ export default {
             display: block;
             margin: 106px auto 40px;
           }
-          p, h3 {
+
+          p,
+          h3 {
             color: #fff;
             line-height: 2;
             text-align: center;
