@@ -2,10 +2,10 @@
 <template>
 <div class="content share">
   <div class="tabList">
-    <span v-for="(item, index) in tabList" :key="index" @click="cur=index" :class="cur==index?'active':''">{{item.name}}</span>
+    <span v-for="(item, shareTabNum) in tabList" :key="shareTabNum" @click="cur=shareTabNum" :class="cur==shareTabNum?'active':''">{{item.name}}</span>
   </div>
   <div class="contentList">
-    <div class="content-item" v-for="(item, index) in tabList[cur].contentList" :key="index">
+    <div class="content-item" v-for="(item, shareCaseNum) in tabList[cur].contentList" :key="shareCaseNum">
       <img :src="item.imgUrl" alt="">
       <h3>{{item.tit}}</h3>
       <p>{{item.content1}}</p>
@@ -160,7 +160,7 @@ export default {
 
   computed: {},
 
-  mounted: {},
+  mounted() {},
 
   methods: {
     handleClose(done) {

@@ -9,14 +9,14 @@
     <p>Have you ever had these troubles?</p>
   </div>
   <div class="content content1Dis">
-    <div class="content1Dis-item" v-for="(item, index) in content1List" :key="index">
+    <div class="content1Dis-item" v-for="(item, teamTitNum) in content1List" :key="teamTitNum">
       <p>{{item.tit}}</p>
       <p>{{item.dis}}</p>
     </div>
   </div>
 
   <div class="content content2">
-    <div class="content2-item" v-for="(item, index) in content2List" :key="index">
+    <div class="content2-item" v-for="(item, teamTypeNum) in content2List" :key="teamTypeNum">
       <h3>{{item.tit}}</h3>
       <img :src="item.imgUrl" alt="">
       <p>{{item.dis}}</p>
@@ -25,7 +25,7 @@
 
   <div class="content content3">
     <h3 class="content">design team | 设计团队</h3>
-    <div class="content3-item" v-for="(item, index) in content3List" :key="index">
+    <div class="content3-item" v-for="(item, teamNum) in content3List" :key="teamNum">
       <div class="item-left">
         <img :src="item.imgUrl" alt="">
       </div>
@@ -101,7 +101,7 @@ export default {
 
   computed: {},
 
-  mounted: {},
+  mounted() {},
 
   methods: {}
 }

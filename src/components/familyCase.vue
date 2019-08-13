@@ -2,20 +2,20 @@
 <template>
 <div class="family">
   <div class="content list">
-    <ul v-for="(item, index) in list" :key="index">
+    <ul v-for="(item, caseTitNum) in list" :key="caseTitNum">
       <div class="list-left">
         <img :src="item.iconUrl" alt="">
         <p>{{item.tit}}</p>
       </div>
-      <li v-for="(item1, index1) in item.listItem1" :key="index1" v-on:click="selected1(index1)" @click="cur1=index1" :class="cur1==index1 ? 'active':''">{{item1}}</li>
-      <li v-for="(item2, index2) in item.listItem2" :key="index2" v-on:click="selected2(index2)" @click="cur2=index2" :class="cur2==index2 ? 'active':''">{{item2}}</li>
-      <li v-for="(item3, index3) in item.listItem3" :key="index3" v-on:click="selected3(index3)" @click="cur3=index3" :class="cur3==index3 ? 'active':''">{{item3}}</li>
+      <li v-for="(item1, flNum) in item.listItem1" :key="flNum" v-on:click="selected1(flNum)" @click="cur1=flNum" :class="cur1==flNum ? 'active':''">{{item1}}</li>
+      <li v-for="(item2, gnNum) in item.listItem2" :key="gnNum" v-on:click="selected2(gnNum)" @click="cur2=gnNum" :class="cur2==gnNum ? 'active':''">{{item2}}</li>
+      <li v-for="(item3, styleNum) in item.listItem3" :key="styleNum" v-on:click="selected3(styleNum)" @click="cur3=styleNum" :class="cur3==styleNum ? 'active':''">{{item3}}</li>
     </ul>
   </div>
 
   <div class="content imgList">
     <ul>
-      <li v-for="(item, index) in imgList.slice((currentPage-1)*pagesize,currentPage*pagesize)" :key="index" v-show="(typeId == item.type || typeId == 0) && (styleId1 == item.style || styleId1 == 0)">
+      <li v-for="(item, caseNum) in imgList.slice((currentPage-1)*pagesize,currentPage*pagesize)" :key="caseNum" v-show="(typeId == item.type || typeId == 0) && (styleId1 == item.style || styleId1 == 0)">
         <router-link :to="{ path : item.url, query: { case: item.id } }">
           <img :src="item.imgUrl" alt="">
         </router-link>
@@ -26,7 +26,7 @@
   </div>
 
   <div class="page">
-    <el-pagination background="true" layout="sizes, prev, pager, next" :page-sizes="6" :pager-count="11" :total="all" @current-change="current_change"></el-pagination>
+    <el-pagination :background="true" layout="sizes, prev, pager, next" :pager-count="11" :total="all" @current-change="current_change"></el-pagination>
   </div>
 
 </div>
@@ -65,17 +65,17 @@ export default {
       imgList: [{ //case数据
           id: 'fl1',
           imgUrl: require('@/assets/img/case/case_img1.jpg'),
-          tit: '汇金城 | 108㎡ | 三室两厅',
+          tit: '汇金城 | 124㎡ | 三室两厅',
           url: '/caseContent',
-          type: 8,
+          type: 1,
           style: 1
         },
         {
           id: 'fl2',
           imgUrl: require('@/assets/img/case/case_img1.jpg'),
-          tit: '汇金城 | 108㎡ | 三室两厅',
+          tit: '汇金城 | 118㎡ | 三室两厅',
           url: '/caseContent',
-          type: 8,
+          type: 1,
           style: 1
         },
         {
@@ -83,7 +83,7 @@ export default {
           imgUrl: require('@/assets/img/case/case_img1.jpg'),
           tit: '汇金城 | 108㎡ | 三室两厅',
           url: '/caseContent',
-          type: 8,
+          type: 1,
           style: 1
         },
         {
@@ -91,7 +91,7 @@ export default {
           imgUrl: require('@/assets/img/case/case_img1.jpg'),
           tit: '汇金城 | 108㎡ | 三室两厅',
           url: '/caseContent',
-          type: 8,
+          type: 1,
           style: 1
         },
         {
@@ -99,7 +99,7 @@ export default {
           imgUrl: require('@/assets/img/case/case_img1.jpg'),
           tit: '汇金城 | 108㎡ | 三室两厅',
           url: '/caseContent',
-          type: 8,
+          type: 1,
           style: 1
         },
         {
@@ -107,15 +107,15 @@ export default {
           imgUrl: require('@/assets/img/case/case_img1.jpg'),
           tit: '汇金城 | 108㎡ | 三室两厅',
           url: '/caseContent',
-          type: 8,
+          type: 1,
           style: 2
         },
         {
-          id: 'fl6',
+          id: 'fl7',
           imgUrl: require('@/assets/img/case/case_img1.jpg'),
           tit: '汇金城 | 101㎡ | 三室两厅',
           url: '/caseContent',
-          type: 8,
+          type: 1,
           style: 2
         }
 
@@ -129,7 +129,7 @@ export default {
 
   computed: {},
 
-  mounted: {},
+  mounted() {},
 
   methods: {
     current_change(currentPage) { //改变当前页
@@ -161,11 +161,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// 过渡动画
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-in;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
 .family {
   background: #000;
 
   .list {
     background: #fff;
+
     ul {
       display: flex;
       border-bottom: 1px solid #000;
@@ -175,10 +187,12 @@ export default {
         width: 150px;
         height: 100px;
         margin: 0 32px 0 0;
+
         img {
           display: block;
           margin: 16px auto 6px;
         }
+
         p {
           color: #333;
           text-align: center;

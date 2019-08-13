@@ -5,7 +5,7 @@
     <img src="@/assets/img/activity/banner.jpg" alt="">
   </dir>
   <div class="discount" style="margin: -4px 0 0 0">
-    <div class="discount-item" v-for="(item, index) in discountList" :key="index">
+    <div class="discount-item" v-for="(item, dicountNum1) in discountList" :key="dicountNum1">
       <h1>{{item.number}}<span>元</span></h1>
       <h3>{{item.tit}}</h3>
       <p>{{item.dis}}</p>
@@ -63,7 +63,7 @@
     <div class="content4">
       <img class="tit" src="@/assets/img/activity/dis_img3.jpg" alt="">
       <div class="content content4List">
-        <div class="content4-item" v-for="(item, index) in content4List" :key="index">
+        <div class="content4-item" v-for="(item, activityShopNum) in content4List" :key="activityShopNum">
           <img :src="item.imgUrl" alt="">
           <div class="dis">
             <p><a href=""></a></p>
@@ -121,7 +121,7 @@ export default {
 
   computed: {},
 
-  mounted: {},
+  mounted() {},
 
   methods: {}
 }

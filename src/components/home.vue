@@ -29,12 +29,12 @@
   <div class="process">
     <h3>定制流程</h3>
     <div class="process-Content">
-      <div class="content-item" v-for="(item, index) in processList" :key="index">
+      <div class="content-item" v-for="(item, processNum) in processList" :key="processNum">
         <div class="content-tit">
           <p>{{item.name}}</p>
           <p>{{item.type}}</p>
         </div>
-        <img v-if="index < 3" src="@/assets/img/home/arrow.png" alt="">
+        <img v-if="processNum < 3" src="@/assets/img/home/arrow.png" alt="">
       </div>
 
     </div>
@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="content content2-main">
-      <div class="imgList" v-for="(item, index) in content2ImgList" :key="index">
+      <div class="imgList" v-for="(item, discountNum) in content2ImgList" :key="discountNum">
         <img :src="item.imgUrl" alt="">
         <h3>{{item.name}}</h3>
         <div class="dis">
@@ -77,7 +77,7 @@
       <div class="content3-left">
         <h3>热卖风格排行榜</h3>
         <el-collapse v-model="activeName" accordion>
-          <el-collapse-item v-for="(item, index) in content3StyleList" :key="index" :title="item.tit" :name="item.name">
+          <el-collapse-item v-for="(item, content3Num) in content3StyleList" :key="content3Num" :title="item.tit" :name="item.name">
             <img :src="item.imgUrl" alt="">
             <p>{{item.content}}</p>
           </el-collapse-item>
@@ -85,13 +85,13 @@
       </div>
 
       <div class="content3-right">
-        <div class="right-content" v-for="(item, index) in content3ImgList" :key="index" v-show="content3ImgShow == index">
+        <div class="right-content" v-for="(item, content3RightNum) in content3ImgList" :key="content3RightNum" v-show="content3ImgShow == content3RightNum">
           <div class="imgList1 demo-image__preview">
             <el-image :src="item.mainImg" :preview-src-list="item.srcList"></el-image>
             <el-image :src="item.rightImg" :preview-src-list="item.srcList"></el-image>
           </div>
           <div class="imgList2 demo-image__preview">
-            <el-image v-for="(item1, index1) in item.imgList" :key="index1" :src="item1" :preview-src-list="item.srcList" alt=""></el-image>
+            <el-image v-for="(item1, content3ImgListNum) in item.imgList" :key="content3ImgListNum" :src="item1" :preview-src-list="item.srcList" alt=""></el-image>
           </div>
         </div>
       </div>
@@ -111,20 +111,20 @@
     <div class="content content4-main">
       <div class="content4-left">
         <h3>热销定制</h3>
-        <div class="left-item" v-for="(item, index) in content4Left" :key="index">
+        <div class="left-item" v-for="(item, content4Num) in content4Left" :key="content4Num">
           <img :src="item.imgUrl" alt="">
           <span>{{item.id}}</span>
           <p>{{item.tit}}</p>
         </div>
       </div>
       <div class="content4-right">
-        <div class="right-content" v-for="(item, index) in content4Right" :key="index" v-show="content3ImgShow == index">
+        <div class="right-content" v-for="(item, contentRight4Num) in content4Right" :key="contentRight4Num" v-show="content3ImgShow == contentRight4Num">
           <div class="imgList1 demo-image__preview">
             <el-image :src="item.mainImg" :preview-src-list="item.srcList"></el-image>
             <el-image :src="item.rightImg" :preview-src-list="item.srcList"></el-image>
           </div>
           <div class="imgList2 demo-image__preview">
-            <el-image v-for="(item1, index1) in item.imgList" :key="index1" :src="item1" :preview-src-list="item.srcList" alt=""></el-image>
+            <el-image v-for="(item1, content4ImgListNum) in item.imgList" :key="content4ImgListNum" :src="item1" :preview-src-list="item.srcList" alt=""></el-image>
           </div>
         </div>
       </div>
@@ -143,16 +143,15 @@
 
     <div class="content content5-main">
       <div class="content5-left">
-        <div class="left-item" v-for="(item, index) in content5ImgList" :key="index" :style="'background-image: url('+item.bgUrl+');'" @click="current=index">
+        <div class="left-item" v-for="(item, teamNum) in content5ImgList" :key="teamNum" :style="'background-image: url('+item.bgUrl+');'" @click="current=teamNum">
           <div class="teamList">
             <img :src="item.imgUrl" alt="">
             <p>{{item.name}}</p>
           </div>
-          <div class="content5-icon" v-if="current==index"></div>
+          <div class="content5-icon" v-if="current==teamNum"></div>
         </div>
       </div>
-
-      <div class="content5-right" v-for="(item, index) in content5ImgList" :key="index" v-show="teamView == index" :style="'background-image: url('+item.mainBgUrl+');'">
+      <div class="content5-right" v-for="(item, teamImgNum) in content5ImgList" :key="teamImgNum" v-show="current==teamImgNum" :style="'background-image: url('+item.mainBgUrl+');'">
         <div class="team-view">
           <img :src="item.imgUrl" alt="">
           <h3>{{item.name}}</h3>
@@ -171,7 +170,6 @@ export default {
   data() {
     return {
       activeName: '1',
-      teamView: 0,
       content3ImgShow: 0,
       current: 0,
       processList: [{
@@ -353,13 +351,23 @@ export default {
 
   computed: {},
 
-  mounted: {},
+  mounted() {},
 
   methods: {}
 }
 </script>
 
 <style lang="scss" scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-in;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
 .home {
   .content1 {
     .tit {
@@ -697,6 +705,10 @@ export default {
   .content5 {
     .content5-main {
       display: flex;
+
+      .content5-left:hover {
+        cursor: pointer;
+      }
 
       .content5-left {
         .left-item {

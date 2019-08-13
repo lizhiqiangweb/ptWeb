@@ -36,15 +36,6 @@ a {
   text-decoration: none;
 }
 
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
 body {
   background: #000;
 }
@@ -61,7 +52,7 @@ body {
 .el-pagination .el-pager .active {
   background-color: #000 !important;
 }
-
+/* 过渡动画css */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease-in;
@@ -71,6 +62,7 @@ body {
 .fade-leave-active {
   opacity: 0;
 }
+
 .banner {
   margin: -58px 0 0 0;
 }

@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-<div class="Header">
+<div class="Header" ref="top">
   <div class="logo">
     <h1>PROTI 璞缇</h1>
   </div>
@@ -11,12 +11,12 @@
       <h3 v-on:click="show = !show">所有空间分类</h3>
       <transition name="show">
         <ul v-show="show">
-          <li v-for="(item, index) in sliderList" :key="index">
+          <li v-for="(item, sliderNum) in sliderList" :key="sliderNum">
             <div class="tit">
               <img :src="item.iconUrl" alt="">
               <p>{{item.tit}}</p>
             </div>
-            <span v-for="(item1, index1) in item.type" :key="index1">{{item1}}</span>
+            <span v-for="(item1, typeNum) in item.type" :key="typeNum">{{item1}}</span>
           </li>
         </ul>
       </transition>
@@ -24,7 +24,7 @@
 
     <div class="navList">
       <ul>
-        <li v-for="(item, index) in navList" :key="index" @click="cur=index" :class="cur == index ? 'active' : ''">
+        <li v-for="(item, navListNum) in navList" :key="navListNum" @click="cur=navListNum" :class="cur == navListNum ? 'active' : ''">
           <router-link :to="{ path : item.path}">{{item.name}}</router-link>
         </li>
       </ul>
@@ -33,12 +33,15 @@
 
   <div class="swiper" v-if="bannerShow">
     <el-carousel :interval="5000" arrow="always" :height="750+'px'">
-      <el-carousel-item v-for="item in bannerList" :key="item">
+      <el-carousel-item v-for="(item, swiperNum) in bannerList" :key="swiperNum">
         <img :src="item.imgUrl" alt="">
       </el-carousel-item>
     </el-carousel>
   </div>
 
+  <div @click="goTop()" ref="goTop" class="goTop" v-show="showBtnTop" :class="showBtnTop==true?'showBtn':''">
+    <img src="../../assets/img/home/top.png" alt="">
+  </div>
 </div>
 </template>
 
@@ -49,6 +52,7 @@ export default {
       cur: 0,
       show: false,
       bannerShow: true,
+      showBtnTop: false,
       navList: [{
           name: '首页',
           path: '/'
@@ -125,11 +129,33 @@ export default {
 
   computed: {},
 
-  mounted: {},
+  mounted() {
+    window.addEventListener('scroll', this.showBtn)
+  },
 
   methods: {
     showList: function () {
       this.show = true;
+    },
+    goTop: function () {
+      let distance = document.documentElement.scrollTop || document.body.scrollTop;
+      //获得当前高度
+      let step = distance / 50;
+      //每步的距离
+      (function jump() {
+        if (distance > 0) {
+          distance -= step;
+          window.scrollTo(0, distance);
+          setTimeout(jump, 8)
+        }
+      })();
+    },
+    showBtn: function () {
+      if (!!document.documentElement.scrollTop && document.documentElement.scrollTop > 600) {
+        this.showBtnTop = true
+      } else {
+        this.showBtnTop = false
+      }
     }
   },
   watch: {
@@ -275,6 +301,33 @@ export default {
 
 }
 
+// goTop  btn
+.goTop:hover {
+  cursor: pointer;
+}
+.goTop {
+  padding: 6px 6px;
+  position: fixed;
+  z-index: 2;
+  bottom: 2%;
+  right: 1%;
+  background: #666;
+  opacity: 0;
+  transition: all 2s ease-in;
+
+  img {
+    width: 36px;
+    height: 36px;
+    display: block;
+  }
+}
+
+// showGoTopbtn
+.showBtn {
+  opacity: .8;
+}
+
+// nav click
 .active {
   border-bottom: 2px solid #fff;
 }

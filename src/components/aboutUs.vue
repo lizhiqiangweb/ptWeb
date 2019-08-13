@@ -5,7 +5,7 @@
     <img src="@/assets/img/aboutUs/banner.jpg" alt="">
   </div>
   <div class="content aboutDis">
-    <div v-for="(item, index) in aboutUs" :key="index">
+    <div v-for="(item, aboutDisNum) in aboutUs" :key="aboutDisNum">
       <h2>{{item.tit}}</h2>
       <p>{{item.content1}}</p>
       <p>{{item.content2}}</p>
@@ -60,7 +60,7 @@
       <h2>品牌理念 | BRAND IDEA</h2>
 
       <div class="linianDis">
-        <div class="linian-item" v-for="(item, index) in linianList" :key="index" v-show="item.type==1">
+        <div class="linian-item" v-for="(item, index) in linianList" :key="'info1-'+ index" v-show="item.type==1">
           <img :src="item.imgUrl" alt="">
           <div class="item-right">
             <h2>{{item.tit1}}</h2>
@@ -69,7 +69,7 @@
           </div>
         </div>
 
-        <div class="linian-item" v-for="(item, index) in linianList" :key="index" v-show="item.type==2">
+        <div class="linian-item" v-for="(item, index) in linianList" :key="'info2-'+ index" v-show="item.type==2">
           <div class="item-right" style="margin: 100px 82px 0 0;">
             <h2>{{item.tit1}}</h2>
             <h3>{{item.tit2}}</h3>
@@ -78,7 +78,7 @@
           <img :src="item.imgUrl" alt="">
         </div>
 
-        <div class="linian-item" v-for="(item, index) in linianList" :key="index" v-show="item.type==3">
+        <div class="linian-item" v-for="(item, index) in linianList" :key="'info3-'+ index" v-show="item.type==3">
           <img :src="item.imgUrl" alt="">
           <div class="item-right">
             <h2>{{item.tit1}}</h2>
@@ -86,6 +86,7 @@
             <p>{{item.content}}</p>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
@@ -133,7 +134,7 @@ export default {
 
   computed: {},
 
-  mounted: {},
+  mounted() {},
 
   methods: {}
 }
