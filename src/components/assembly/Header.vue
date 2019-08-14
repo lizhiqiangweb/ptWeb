@@ -1,12 +1,11 @@
-<!--  -->
+<!-- 头部组件 -->
 <template>
-<div class="Header" ref="top">
+<div class="Header">
   <div class="logo">
     <h1>PROTI 璞缇</h1>
   </div>
 
-  <div class="line"></div>
-  <div class="content top">
+  <div class="top" :class="fixedNavTop == true ? 'fixedNavTop':''">
     <div class="slider">
       <h3 v-on:click="show = !show">所有空间分类</h3>
       <transition name="show">
@@ -29,6 +28,7 @@
         </li>
       </ul>
     </div>
+
   </div>
 
   <div class="swiper" v-if="bannerShow">
@@ -39,7 +39,7 @@
     </el-carousel>
   </div>
 
-  <div @click="goTop()" ref="goTop" class="goTop" v-show="showBtnTop" :class="showBtnTop==true?'showBtn':''">
+  <div @click="goTop()" class="goTop" v-show="showBtnTop" :class="showBtnTop==true?'showBtn':''">
     <img src="../../assets/img/home/top.png" alt="">
   </div>
 </div>
@@ -53,6 +53,7 @@ export default {
       show: false,
       bannerShow: true,
       showBtnTop: false,
+      fixedNavTop: false,
       navList: [{
           name: '首页',
           path: '/'
@@ -130,7 +131,8 @@ export default {
   computed: {},
 
   mounted() {
-    window.addEventListener('scroll', this.showBtn)
+    window.addEventListener('scroll', this.showBtn);
+    window.addEventListener('scroll', this.fixedNav);
   },
 
   methods: {
@@ -152,11 +154,22 @@ export default {
     },
     showBtn: function () {
       if (!!document.documentElement.scrollTop && document.documentElement.scrollTop > 600) {
-        this.showBtnTop = true
+        this.showBtnTop = true;
       } else {
         this.showBtnTop = false
       }
+    },
+    fixedNav: function () {
+      if (!!document.documentElement.scrollTop && document.documentElement.scrollTop > 300) {
+        this.fixedNavTop = true;
+        this.show = false;
+      } else {
+        this.fixedNavTop = false
+      }
     }
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.showBtn);
   },
   watch: {
     $route(to, from) {
@@ -193,7 +206,6 @@ export default {
     line-height: 120px;
     width: 100%;
     background: #1f2121;
-    padding: 0 0 58px 0;
 
     h1 {
       color: #fff;
@@ -208,21 +220,33 @@ export default {
     top: -58px;
   }
 
-  .top {
+  // 滚动条滚动的时候固定导航
+  .fixedNavTop {
+    position: fixed !important;
+    top: 0 !important;
+    background: rgba(0, 0, 0, .9) !important;
+    z-index: 1997;
+    width: 100% !important;
     display: flex;
-    position: relative;
-    top: -58px;
+    justify-content: center;
+    height: 55px !important;
+    border-bottom: 1px solid #999;
+  }
+
+  .top {
+    transition: all .3s ease-in;
+    height: 59px;
+    display: flex;
+    justify-content: center;
 
     .slider {
       background: #fff;
       width: 200px;
-      margin: -59px 0 0 0;
 
       h3 {
         text-align: center;
         padding: 16px 0;
         font-weight: 500;
-        border-bottom: 1px solid #999;
       }
 
       h3:hover {
@@ -270,7 +294,6 @@ export default {
     .navList {
       ul {
         display: flex;
-        margin: -58px 0 0 0;
 
         li {
           height: 54px;
@@ -292,8 +315,6 @@ export default {
   }
 
   .swiper {
-    margin: -58px 0 0 0;
-
     img {
       display: block;
     }
@@ -305,6 +326,7 @@ export default {
 .goTop:hover {
   cursor: pointer;
 }
+
 .goTop {
   padding: 6px 6px;
   position: fixed;

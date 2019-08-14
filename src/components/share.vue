@@ -1,4 +1,4 @@
-<!--  -->
+<!-- 晒家分享页面 -->
 <template>
 <div class="content share">
   <div class="tabList">

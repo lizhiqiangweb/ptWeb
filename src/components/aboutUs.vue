@@ -1,4 +1,4 @@
-<!--  -->
+<!-- 实体门店页面 -->
 <template>
 <div class="aboutUs">
   <div class="banner">

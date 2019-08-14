@@ -1,4 +1,4 @@
-<!--  -->
+<!-- 活动页面 -->
 <template>
 <div class="activity">
   <dir class="banner">
@@ -121,7 +121,9 @@ export default {
 
   computed: {},
 
-  mounted() {},
+  mounted() {
+
+  },
 
   methods: {}
 }

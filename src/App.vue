@@ -55,15 +55,11 @@ body {
 /* 过渡动画css */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
-}
-
-.banner {
-  margin: -58px 0 0 0;
 }
 </style>

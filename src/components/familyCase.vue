@@ -1,4 +1,4 @@
-<!--  -->
+<!-- 美家案例页面 -->
 <template>
 <div class="family">
   <div class="content list">
@@ -26,7 +26,7 @@
   </div>
 
   <div class="page">
-    <el-pagination :background="true" layout="sizes, prev, pager, next" :pager-count="11" :total="all" @current-change="current_change"></el-pagination>
+    <el-pagination :background="true" layout="prev, pager, next" :pager-count="11" :total="all" @current-change="current_change"></el-pagination>
   </div>
 
 </div>

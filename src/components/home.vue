@@ -1,4 +1,4 @@
-<!--  -->
+<!-- 主页 -->
 <template>
 <div class="home">
   <div class="content content1">
@@ -78,7 +78,7 @@
         <h3>热卖风格排行榜</h3>
         <el-collapse v-model="activeName" accordion>
           <el-collapse-item v-for="(item, content3Num) in content3StyleList" :key="content3Num" :title="item.tit" :name="item.name">
-            <img :src="item.imgUrl" alt="">
+            <img :src="item.imgUrl" alt="" @click="cur">
             <p>{{item.content}}</p>
           </el-collapse-item>
         </el-collapse>
@@ -129,7 +129,6 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <div class="content content1 content5">
@@ -152,12 +151,14 @@
         </div>
       </div>
       <div class="content5-right" v-for="(item, teamImgNum) in content5ImgList" :key="teamImgNum" v-show="current==teamImgNum" :style="'background-image: url('+item.mainBgUrl+');'">
-        <div class="team-view">
-          <img :src="item.imgUrl" alt="">
-          <h3>{{item.name}}</h3>
-          <p>擅长风格：{{item.style}}</p>
-          <p>{{item.motto}}</p>
-        </div>
+        <transition name="show">
+          <div class="team-view">
+            <img :src="item.imgUrl" alt="">
+            <h3>{{item.name}}</h3>
+            <p>擅长风格：{{item.style}}</p>
+            <p>{{item.motto}}</p>
+          </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -172,6 +173,7 @@ export default {
       activeName: '1',
       content3ImgShow: 0,
       current: 0,
+      styleCount: 0,
       processList: [{
           name: '网上预约',
           type: '（免费）'
@@ -358,6 +360,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// 动画
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease-in;
@@ -597,6 +600,10 @@ export default {
           height: 186px;
         }
 
+        img:hover {
+          cursor: pointer;
+        }
+
         p {
           text-indent: 2em;
           line-height: 2;
@@ -625,7 +632,6 @@ export default {
           .el-image {
             margin: 10px 10px 0 0;
           }
-
         }
       }
     }

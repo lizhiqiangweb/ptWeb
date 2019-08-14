@@ -1,4 +1,4 @@
-<!--  -->
+<!-- 设计团队页面 -->
 <template>
 <div class="activity">
   <div class="banner">
@@ -200,6 +200,7 @@ export default {
       text-align: center;
       color: #fff;
       font-size: 24px;
+      margin: 0 0 48px 0;
     }
 
     .content3-item {
@@ -218,7 +219,7 @@ export default {
       .item-right {
         padding: 0 24px 0 0;
         h2 {
-          margin: 102px 0 0 0;
+          margin: 88px 0 0 0;
         }
         p {
           margin: 24px 0 0 0;
