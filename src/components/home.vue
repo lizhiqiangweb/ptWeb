@@ -78,7 +78,7 @@
         <h3>热卖风格排行榜</h3>
         <el-collapse v-model="activeName" accordion>
           <el-collapse-item v-for="(item, content3Num) in content3StyleList" :key="content3Num" :title="item.tit" :name="item.name">
-            <img :src="item.imgUrl" alt="" @click="cur">
+            <img :src="item.imgUrl" alt="" @click="content3ImgShow=content3Num">
             <p>{{item.content}}</p>
           </el-collapse-item>
         </el-collapse>
@@ -87,11 +87,11 @@
       <div class="content3-right">
         <div class="right-content" v-for="(item, content3RightNum) in content3ImgList" :key="content3RightNum" v-show="content3ImgShow == content3RightNum">
           <div class="imgList1 demo-image__preview">
-            <el-image :src="item.mainImg" :preview-src-list="item.srcList"></el-image>
+            <el-image class="content3-mainImg" :src="item.mainImg" :preview-src-list="item.srcList"></el-image>
             <el-image :src="item.rightImg" :preview-src-list="item.srcList"></el-image>
           </div>
           <div class="imgList2 demo-image__preview">
-            <el-image v-for="(item1, content3ImgListNum) in item.imgList" :key="content3ImgListNum" :src="item1" :preview-src-list="item.srcList" alt=""></el-image>
+            <el-image class="content3-imgList" v-for="(item1, content3ImgListNum) in item.imgList" :key="content3ImgListNum" :src="item1" :preview-src-list="item.srcList" alt=""></el-image>
           </div>
         </div>
       </div>
@@ -118,13 +118,13 @@
         </div>
       </div>
       <div class="content4-right">
-        <div class="right-content" v-for="(item, contentRight4Num) in content4Right" :key="contentRight4Num" v-show="content3ImgShow == contentRight4Num">
+        <div class="right-content" v-for="(item, contentRight4Num) in content4Right" :key="contentRight4Num" v-show="content4ImgShow == contentRight4Num">
           <div class="imgList1 demo-image__preview">
-            <el-image :src="item.mainImg" :preview-src-list="item.srcList"></el-image>
+            <el-image class="content4-mainImg" :src="item.mainImg" :preview-src-list="item.srcList"></el-image>
             <el-image :src="item.rightImg" :preview-src-list="item.srcList"></el-image>
           </div>
           <div class="imgList2 demo-image__preview">
-            <el-image v-for="(item1, content4ImgListNum) in item.imgList" :key="content4ImgListNum" :src="item1" :preview-src-list="item.srcList" alt=""></el-image>
+            <el-image class="content4-imgList" v-for="(item1, content4ImgListNum) in item.imgList" :key="content4ImgListNum" :src="item1" :preview-src-list="item.srcList" alt=""></el-image>
           </div>
         </div>
       </div>
@@ -172,6 +172,7 @@ export default {
     return {
       activeName: '1',
       content3ImgShow: 0,
+      content4ImgShow: 0,
       current: 0,
       styleCount: 0,
       processList: [{
@@ -261,7 +262,7 @@ export default {
           ]
         },
         {
-          mainImg: require('@/assets/img/home/img4.jpg'),
+          mainImg: require('@/assets/img/home/img5.jpg'),
           rightImg: require('@/assets/img/home/img5.jpg'),
           imgList: [
             require('@/assets/img/home/img6.jpg'),
@@ -270,7 +271,7 @@ export default {
           ]
         },
         {
-          mainImg: require('@/assets/img/home/img4.jpg'),
+          mainImg: require('@/assets/img/home/img5.jpg'),
           rightImg: require('@/assets/img/home/img5.jpg'),
           imgList: [
             require('@/assets/img/home/img6.jpg'),
@@ -620,6 +621,10 @@ export default {
 
         .imgList1 {
           margin: 0 0 0 10px;
+          .content3-mainImg {
+            width: 590px;
+            height: 300px;
+          }
 
           .el-image {
             margin: 0 10px 0 0;
@@ -628,6 +633,10 @@ export default {
 
         .imgList2 {
           margin: 0 0 0 10px;
+          .content3-imgList {
+            width: 290px;
+            height: 300px;
+          }
 
           .el-image {
             margin: 10px 10px 0 0;
@@ -690,6 +699,10 @@ export default {
 
         .imgList1 {
           margin: 0 0 0 10px;
+          .content4-mainImg {
+            width: 590px;
+            height: 300px;
+          }
 
           .el-image {
             margin: 0 10px 0 0;
@@ -698,6 +711,10 @@ export default {
 
         .imgList2 {
           margin: 0 0 0 10px;
+          .content4-imgList {
+            width: 290px;
+            height: 300px;
+          }
 
           .el-image {
             margin: 10px 10px 0 0;

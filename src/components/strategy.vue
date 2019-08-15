@@ -6,7 +6,9 @@
   </div>
   <div class="contentList">
     <div class="content-item" v-for="(item, index) in tabList[cur].contentList" :key="index">
-      <img :src="item.imgUrl" alt="">
+      <router-link :to="{ path : item.url, query: { strategy: item.id } }">
+        <img :src="item.imgUrl" alt="">
+      </router-link>
       <h3>{{item.tit}}</h3>
       <span>{{item.sj}}</span>
       <p>{{item.content1}}</p>
@@ -24,6 +26,8 @@ export default {
       tabList: [{
           name: '定制攻略',
           contentList: [{
+              id: 'dz1',
+              url: '/strategyContent',
               imgUrl: require('@/assets/img/strategy/img1.jpg'),
               tit: '不同年龄选购衣柜有什么区别？',
               sj: '2019.07.30',
@@ -31,6 +35,8 @@ export default {
               content2: '不同年龄阶层人群，因为生活习惯不同或者身体状况差异等因素，他们的衣柜设计也是有所差别的.'
             },
             {
+              id: 'dz2',
+              url: '/strategyContent',
               imgUrl: require('@/assets/img/strategy/img2.jpg'),
               tit: '定制橱柜保养的方法及攻略',
               sj: '2019.07.30',
@@ -38,6 +44,8 @@ export default {
               content2: '面对众多板材得心应手，再也不怕被忽悠。'
             },
             {
+              id: 'dz3',
+              url: '/strategyContent',
               imgUrl: require('@/assets/img/strategy/img3.jpg'),
               tit: '定制家具应该如何做清洁工作？',
               sj: '2019.07.30',
@@ -45,6 +53,8 @@ export default {
               content2: '面对众多板材得心应手，再也不怕被忽悠。'
             },
             {
+              id: 'dz4',
+              url: '/strategyContent',
               imgUrl: require('@/assets/img/strategy/img4.jpg'),
               tit: '家居装修，如何去除甲醛君？',
               sj: '2019.07.30',
@@ -52,6 +62,8 @@ export default {
               content2: '面对众多板材得心应手，再也不怕被忽悠。'
             },
             {
+              id: 'dz5',
+              url: '/strategyContent',
               imgUrl: require('@/assets/img/strategy/img5.jpg'),
               tit: '家装光线差该如何解决？',
               sj: '2019.07.30',
@@ -59,6 +71,8 @@ export default {
               content2: '面对众多板材得心应手，再也不怕被忽悠。'
             },
             {
+              id: 'dz6',
+              url: '/strategyContent',
               imgUrl: require('@/assets/img/strategy/img6.jpg'),
               tit: '梅雨季节的到来，定制家具如何做好防范工作？',
               sj: '2019.07.30',
@@ -66,6 +80,8 @@ export default {
               content2: '面对众多板材得心应手，再也不怕被忽悠。'
             },
             {
+              id: 'dz7',
+              url: '/strategyContent',
               imgUrl: require('@/assets/img/strategy/img7.jpg'),
               tit: '衣柜发霉如何处理？',
               sj: '2019.07.30',
@@ -73,6 +89,8 @@ export default {
               content2: '面对众多板材得心应手，再也不怕被忽悠。'
             },
             {
+              id: 'dz8',
+              url: '/strategyContent',
               imgUrl: require('@/assets/img/strategy/img8.jpg'),
               tit: '衣柜这样收纳不易乱？',
               sj: '2019.07.30',
@@ -80,6 +98,8 @@ export default {
               content2: '面对众多板材得心应手，再也不怕被忽悠。'
             },
             {
+              id: 'dz9',
+              url: '/strategyContent',
               imgUrl: require('@/assets/img/strategy/img9.jpg'),
               tit: '远离噪音烦恼，家居防噪技巧有哪些？',
               sj: '2019.07.30',
@@ -109,13 +129,12 @@ export default {
         {
           name: '企业新闻',
           contentList: [{
-              imgUrl: require('@/assets/img/strategy/img1.jpg'),
-              tit: '橱柜挑选更轻松',
-              sj: '2019.07.30',
-              content1: '门板材质一点通，橱柜挑选更轻松；',
-              content2: '面对众多板材得心应手，再也不怕被忽悠。'
-            }
-          ]
+            imgUrl: require('@/assets/img/strategy/img1.jpg'),
+            tit: '橱柜挑选更轻松',
+            sj: '2019.07.30',
+            content1: '门板材质一点通，橱柜挑选更轻松；',
+            content2: '面对众多板材得心应手，再也不怕被忽悠。'
+          }]
         }
       ]
     };
@@ -173,11 +192,13 @@ export default {
       padding: 12px 14px 22px;
       margin: 0 22px 30px 0;
       width: 350px;
+
       img {
         display: block;
         width: 350px;
         height: 184px;
       }
+
       h3 {
         margin: 26px 0 0 0;
         padding: 0 0 26px 0;

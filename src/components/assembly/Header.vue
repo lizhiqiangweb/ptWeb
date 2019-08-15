@@ -32,16 +32,32 @@
   </div>
 
   <div class="swiper" v-if="bannerShow">
-    <el-carousel :interval="5000" arrow="always" :height="750+'px'">
+    <el-carousel :interval="5000" arrow="always" :height="bannerH +'px'">
       <el-carousel-item v-for="(item, swiperNum) in bannerList" :key="swiperNum">
         <img :src="item.imgUrl" alt="">
       </el-carousel-item>
     </el-carousel>
   </div>
 
-  <div @click="goTop()" class="goTop" v-show="showBtnTop" :class="showBtnTop==true?'showBtn':''">
-    <img src="../../assets/img/home/top.png" alt="">
+  <div class="btnBox">
+    <div class="btn-item wx">
+      <div class="wx-content">
+        <img class="wx_icon" src="../../assets/img/home/wx_img1.jpg" alt="">
+      </div>
+      <img class="wx_icon" src="../../assets/img/home/wx_icon.png" alt="">
+    </div>
+    <div class="btn-item phone">
+      <div class="phone-content">
+        <p>8888-8888</p>
+      </div>
+      <img class="wx_icon" src="../../assets/img/home/phone_icon.png" alt="">
+    </div>
+    <!-- v-show="showBtnTop" :class="showBtnTop==true?'showBtn':''" -->
+    <div @click="goTop()" class="goTop btn-item">
+      <img src="../../assets/img/home/top_icon.png" alt="">
+    </div>
   </div>
+
 </div>
 </template>
 
@@ -49,6 +65,7 @@
 export default {
   data() {
     return {
+      bannerH: 750,
       cur: 0,
       show: false,
       bannerShow: true,
@@ -131,6 +148,7 @@ export default {
   computed: {},
 
   mounted() {
+    // scroll监听
     window.addEventListener('scroll', this.showBtn);
     window.addEventListener('scroll', this.fixedNav);
   },
@@ -166,7 +184,7 @@ export default {
       } else {
         this.fixedNavTop = false
       }
-    }
+    },
   },
   destroyed() {
     window.removeEventListener("scroll", this.showBtn);
@@ -176,7 +194,7 @@ export default {
       if (this.$route.path === "/activity" || "/team" || "/aboutUs") {
         this.bannerShow = false;
       }
-      if (this.$route.path === "/" || this.$route.path === "/familyCase" || this.$route.path === "/strategy" || this.$route.path === "/share") {
+      if (this.$route.path === "/" || this.$route.path === "/familyCase" || this.$route.path === "/strategy" || this.$route.path === "/share" || this.$route.path === "/strategyContent") {
         this.bannerShow = true;
       }
     }
@@ -323,24 +341,81 @@ export default {
 }
 
 // goTop  btn
-.goTop:hover {
+.btn-item:hover {
   cursor: pointer;
 }
 
-.goTop {
-  padding: 6px 6px;
+.btnBox {
   position: fixed;
-  z-index: 2;
-  bottom: 2%;
+  bottom: 5%;
   right: 1%;
-  background: #666;
-  opacity: 0;
-  transition: all 2s ease-in;
+  z-index: 2;
 
-  img {
-    width: 36px;
-    height: 36px;
-    display: block;
+  .btn-item:last-child {
+    border-bottom: none;
+  }
+
+  .wx:hover .wx-content {
+    opacity: 1;
+    right: 65px;
+  }
+
+  .phone:hover .phone-content {
+    opacity: 1;
+    right: 65px;
+  }
+
+  .phone {
+    position: relative;
+
+    .phone-content {
+      position: absolute;
+      right: 45px;
+      top: 0;
+      opacity: 0;
+      transition: all .2s ease-in;
+
+      p {
+        width: 120px;
+        height: 52px;
+        line-height: 52px;
+        background: #fff;
+        text-align: center;
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+  .wx {
+    position: relative;
+
+    .wx-content {
+      position: absolute;
+      right: 45px;
+      top: 0;
+      opacity: 0;
+      transition: all .2s ease-in;
+
+      img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  }
+
+  .btn-item {
+    padding: 6px 6px;
+    background: #666;
+    transition: all 2s ease-in;
+    border-bottom: 1px solid #aaa;
+    width: 40px;
+    height: 40px;
+
+    img {
+      width: 36px;
+      height: 36px;
+      display: block;
+    }
   }
 }
 

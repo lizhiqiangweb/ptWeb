@@ -7,6 +7,7 @@ import activity from '@/components/activity'
 import strategy from '@/components/strategy'
 import share from '@/components/share'
 import aboutUs from '@/components/aboutUs'
+import strategyContent from '@/components/strategyContent'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/aboutUs',
       name: 'aboutUs',
       component: aboutUs
+    },
+    {
+      path: '/strategyContent',
+      name: 'strategyContent',
+      component: strategyContent
     }
   ]
 })
