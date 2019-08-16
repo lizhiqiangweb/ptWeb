@@ -5,8 +5,13 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import 'animate.css'
+import {WOW} from 'wowjs'
+
+new WOW({live: false}).init()
 
 Vue.use(ElementUI)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

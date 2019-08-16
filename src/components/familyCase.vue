@@ -15,7 +15,7 @@
 
   <div class="content imgList">
     <ul>
-      <li v-for="(item, caseNum) in imgList.slice((currentPage-1)*pagesize,currentPage*pagesize)" :key="caseNum" v-show="(typeId == item.type || typeId == 0) && (styleId1 == item.style || styleId1 == 0)">
+      <li class="imgList-item" v-for="(item, caseNum) in imgList.slice((currentPage-1)*pagesize,currentPage*pagesize)" :key="caseNum" v-show="(typeId == item.type || typeId == 0) && (styleId1 == item.style || styleId1 == 0)">
         <router-link :to="{ path : item.url, query: { case: item.id } }">
           <img :src="item.imgUrl" alt="">
         </router-link>
@@ -41,7 +41,6 @@ export default {
       cur3: 0,
       currentPage: 1, //当前页码
       all: 0, //默认数据总数
-      totalPage: 0, //当前条数
       pagesize: 6, //每页的数据显示条数
       typeId: 0,
       styleId1: 0,
@@ -118,18 +117,17 @@ export default {
           type: 1,
           style: 2
         }
-
       ],
     };
-  },
-  created() {
-    this.all = (this.imgList.length) / 6 * 10;
   },
   components: {},
 
   computed: {},
 
-  mounted() {},
+  mounted() {
+    //需要实时监测数据的变化!!!
+    this.all = (this.imgList.length) / 6 * 10;
+  },
 
   methods: {
     current_change(currentPage) { //改变当前页

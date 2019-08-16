@@ -2,7 +2,7 @@
 <template>
 <div class="home">
   <div class="content content1">
-    <div class="tit">
+    <div class="tit wow animated fadeInLeft">
       <img src="@/assets/img/home/tit_img1.jpg" alt="">
       <div>
         <h3>0元设计</h3>
@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <div class="content1-main">
+    <div class="content1-main wow animated fadeInDown">
       <div class="content-left">
         <h3>预约获取<span>0元设计</span></h3>
         <form action="">
@@ -27,8 +27,8 @@
   </div>
 
   <div class="process">
-    <h3>定制流程</h3>
-    <div class="process-Content">
+    <h3 class="wow animated fadeInDown">定制流程</h3>
+    <div class="process-Content wow animated fadeInDown">
       <div class="content-item" v-for="(item, processNum) in processList" :key="processNum">
         <div class="content-tit">
           <p>{{item.name}}</p>
@@ -41,7 +41,7 @@
   </div>
 
   <div class="content content1 content2">
-    <div class="tit">
+    <div class="tit wow animated fadeInLeft">
       <img src="@/assets/img/home/tit_img2.jpg" alt="">
       <div>
         <h3>今日优惠</h3>
@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="content content2-main">
-      <div class="imgList" v-for="(item, discountNum) in content2ImgList" :key="discountNum">
+      <div class="imgList wow animated fadeInUp" data-wow-duration="500ms" v-for="(item, discountNum) in content2ImgList" :key="discountNum">
         <img :src="item.imgUrl" alt="">
         <h3>{{item.name}}</h3>
         <div class="dis">
@@ -65,7 +65,7 @@
   </div>
 
   <div class="content content1 content3">
-    <div class="tit">
+    <div class="tit wow animated fadeInLeft">
       <img src="@/assets/img/home/tit_img3.jpg" alt="">
       <div>
         <h3>潮流风格</h3>
@@ -73,7 +73,7 @@
       </div>
     </div>
 
-    <div class="content content3-main">
+    <div class="content content3-main wow animated flipInX">
       <div class="content3-left">
         <h3>热卖风格排行榜</h3>
         <el-collapse v-model="activeName" accordion>
@@ -100,7 +100,7 @@
   </div>
 
   <div class="content content1 content4">
-    <div class="tit">
+    <div class="tit wow animated fadeInLeft">
       <img src="@/assets/img/home/tit_img4.jpg" alt="">
       <div>
         <h3>热销定制</h3>
@@ -108,7 +108,7 @@
       </div>
     </div>
 
-    <div class="content content4-main">
+    <div class="content content4-main wow animated flipInX">
       <div class="content4-left">
         <h3>热销定制</h3>
         <div class="left-item" v-for="(item, content4Num) in content4Left" :key="content4Num">
@@ -132,7 +132,7 @@
   </div>
 
   <div class="content content1 content5">
-    <div class="tit">
+    <div class="tit wow animated fadeInLeft">
       <img src="@/assets/img/home/tit_img5.jpg" alt="">
       <div>
         <h3>大咖设计</h3>
@@ -140,7 +140,7 @@
       </div>
     </div>
 
-    <div class="content content5-main">
+    <div class="content content5-main wow animated flipInX">
       <div class="content5-left">
         <div class="left-item" v-for="(item, teamNum) in content5ImgList" :key="teamNum" :style="'background-image: url('+item.bgUrl+');'" @click="current=teamNum">
           <div class="teamList">
@@ -461,7 +461,7 @@ export default {
     display: flex;
     background: url('../assets/img/home/bg_img.jpg') no-repeat;
     margin: 58px 0 0 0;
-    height: 46vh;
+    height: 36vh;
     width: 100%;
     justify-content: center;
     background-size: cover;
@@ -470,14 +470,14 @@ export default {
 
     h3 {
       color: #fff;
-      line-height: 300px;
+      line-height: 36vh;
       margin: 0 6vw 0 0;
       font-size: 28px;
     }
 
     .process-Content {
       display: flex;
-      margin: 12vh 0 0 0;
+      margin: 8vh 0 0 0;
 
       .content-item {
         display: flex;
@@ -485,12 +485,12 @@ export default {
         img {
           width: 6vw;
           height: 4vh;
-          margin: 8vh 0 0 0;
+          margin: 7vh 0 0 0;
         }
 
         .content-tit {
           width: 6vw;
-          height: 22vh;
+          height: 20vh;
           text-align: center;
           border: 1px solid #fff;
           margin: 0 28px 0 28px;
