@@ -8,6 +8,7 @@ import strategy from '@/components/strategy'
 import share from '@/components/share'
 import aboutUs from '@/components/aboutUs'
 import strategyContent from '@/components/strategyContent'
+import teamNumberDis from '@/components/teamNumberDis'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/strategyContent',
       name: 'strategyContent',
       component: strategyContent
+    },
+    {
+      path: '/teamNumberDis',
+      name: 'teamNumberDis',
+      component: teamNumberDis
     }
   ]
 })

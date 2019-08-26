@@ -73,7 +73,7 @@
       </div>
     </div>
 
-    <div class="content content3-main wow animated flipInX">
+    <div class="content content3-main wow animated fadeInUp">
       <div class="content3-left">
         <h3>热卖风格排行榜</h3>
         <el-collapse v-model="activeName" accordion>
@@ -108,7 +108,7 @@
       </div>
     </div>
 
-    <div class="content content4-main wow animated flipInX">
+    <div class="content content4-main wow animated fadeInUp">
       <div class="content4-left">
         <h3>热销定制</h3>
         <div class="left-item" v-for="(item, content4Num) in content4Left" :key="content4Num">
@@ -140,7 +140,7 @@
       </div>
     </div>
 
-    <div class="content content5-main wow animated flipInX">
+    <div class="content content5-main wow animated fadeInUp">
       <div class="content5-left">
         <div class="left-item" v-for="(item, teamNum) in content5ImgList" :key="teamNum" :style="'background-image: url('+item.bgUrl+');'" @click="current=teamNum">
           <div class="teamList">

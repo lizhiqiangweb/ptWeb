@@ -4,16 +4,19 @@
   <transition name="fade">
     <router-view />
   </transition>
+  <Footer></Footer>
 </div>
 </template>
 
 <script>
 import Header from "@/components/assembly/Header";
+import Footer from "@/components/assembly/Footer";
 
 export default {
   name: "App",
   components: {
-    Header
+    Header,
+    Footer
   },
   data() {
     return {};

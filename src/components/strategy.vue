@@ -2,10 +2,10 @@
 <template>
 <div class="content strategy">
   <div class="tabList">
-    <span v-for="(item, index) in tabList" :key="index" @click="cur=index" :class="cur==index?'active':''">{{item.name}}</span>
+    <span v-for="(item, strategyTitIndex) in tabList" :key="strategyTitIndex" @click="cur=strategyTitIndex" :class="cur==strategyTitIndex?'active':''">{{item.name}}</span>
   </div>
   <div class="contentList">
-    <div class="content-item" v-for="(item, index) in tabList[cur].contentList.slice((currentPage-1)*pagesize,currentPage*pagesize)" :key="index">
+    <div class="content-item" v-for="(item, strategyContentIndex) in tabList[cur].contentList.slice((currentPage-1)*pagesize,currentPage*pagesize)" :key="strategyContentIndex">
       <router-link :to="{ path : item.url, query: { strategy: item.id } }">
         <img :src="item.imgUrl" alt="">
       </router-link>

@@ -1,15 +1,15 @@
 <!--  -->
 <template>
 <div class="strategyContent">
-  <div class="content" v-for="(item, index) in dataList" v-show="item.id==showItem" :key="index">
+  <div class="content" v-for="(item, strategyIndex) in dataList" v-show="item.id==showItem" :key="strategyIndex">
     <h2 class="tit">{{item.tit}}</h2>
     <div class="authorDis">
       <p><span>{{item.sj}}</span>{{item.author}}</p>
     </div>
     <p class="contentDis">{{item.contentDis}}</p>
     <img :src="item.imgUrl" alt="">
-    <div class="content-item" v-for="(item, index) in item.contentList" :key="index">
-      <h3 v-if="item.tit != '' ">{{index+1}}、{{item.tit}}</h3>
+    <div class="content-item" v-for="(item, disIndex) in item.contentList" :key="disIndex">
+      <h3 v-if="item.tit != '' ">{{disIndex+1}}、{{item.tit}}</h3>
       <p>{{item.content}}</p>
     </div>
   </div>
@@ -293,7 +293,7 @@ export default {
   created() {
     var id = this.$route.query.strategy;
     this.showItem = id;
-    console.log(this.showItem);
+    // console.log(this.showItem);
   },
 }
 </script>
