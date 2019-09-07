@@ -53,8 +53,8 @@
           </div>
         </el-form>
         <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false">取 消</el-button>
-          <el-button @click="dialogVisible = false">提交申请</el-button>
+          <el-button @click="dialogVisible1 = false">取 消</el-button>
+          <el-button @click="dialogVisible1 = false">提交申请</el-button>
         </span>
       </el-dialog>
 

@@ -189,16 +189,16 @@ export default {
   destroyed() {
     window.removeEventListener("scroll", this.showBtn);
   },
-  watch: {
-    $route(to, from) {
-      if (this.$route.path === "/activity" || "/team" || "/aboutUs") {
-        this.bannerShow = false;
-      }
-      if (this.$route.path === "/" || this.$route.path === "/familyCase" || this.$route.path === "/strategy" || this.$route.path === "/share" || this.$route.path === "/strategyContent") {
-        this.bannerShow = true;
-      }
-    }
-  }
+  // watch: {
+  //   $route(to, from) {
+  //     if (this.$route.path === "/activity" || "/team" || "/aboutUs") {
+  //       this.bannerShow = false;
+  //     }
+  //     if (this.$route.path === "/" || this.$route.path === "/familyCase" || this.$route.path === "/strategy" || this.$route.path === "/share" || this.$route.path === "/strategyContent") {
+  //       this.bannerShow = true;
+  //     }
+  //   }
+  // }
 
 }
 </script>
