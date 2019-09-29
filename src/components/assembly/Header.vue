@@ -24,7 +24,7 @@
     <div class="navList">
       <ul>
         <li v-for="(item, navListNum) in navList" :key="navListNum" @click="cur=navListNum" :class="cur == navListNum ? 'active' : ''">
-          <router-link :to="{ path : item.path}">{{item.name}}</router-link>
+          <router-link :to="{ path : item.path}" @click.native="changeNav(navListNum)">{{item.name}}</router-link>
         </li>
       </ul>
     </div>
@@ -150,10 +150,18 @@ export default {
   mounted() {
     // scroll监听
     window.addEventListener('scroll', this.showBtn);
-    window.addEventListener('scroll', this.fixedNav);
+    window.addEventListener('scroll', this.fixedNav); //侧边栏导航
+    var localCur = JSON.parse(window.localStorage.getItem('cur'));
+    this.cur = localCur;
   },
 
   methods: {
+    //实时获取导航选取的值 配合@click.native使用
+    changeNav(index) {
+      this.cur = index;
+      //设置本地储存
+      localStorage.setItem('cur', index);
+    },
     showList: function () {
       this.show = true;
     },
@@ -189,16 +197,16 @@ export default {
   destroyed() {
     window.removeEventListener("scroll", this.showBtn);
   },
-  // watch: {
-  //   $route(to, from) {
-  //     if (this.$route.path === "/activity" || "/team" || "/aboutUs") {
-  //       this.bannerShow = false;
-  //     }
-  //     if (this.$route.path === "/" || this.$route.path === "/familyCase" || this.$route.path === "/strategy" || this.$route.path === "/share" || this.$route.path === "/strategyContent") {
-  //       this.bannerShow = true;
-  //     }
-  //   }
-  // }
+  watch: {
+    $route(to, from) {
+      if (this.$route.path === "/activity" || "/team" || "/aboutUs") {
+        this.bannerShow = false;
+      }
+      if (this.$route.path === "/" || this.$route.path === "/familyCase" || this.$route.path === "/strategy" || this.$route.path === "/share" || this.$route.path === "/strategyContent" || this.$route.path === "/caseContent") {
+        this.bannerShow = true;
+      }
+    }
+  }
 
 }
 </script>
